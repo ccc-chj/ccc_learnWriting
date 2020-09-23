@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var countDigitOne = function(n) {
+                if (n<5)
+                return 0;
+            let res = 0, high = parseInt(n / 10), cur = n % 10, low = 0, digist = 1;
+            while (high || cur) {
+                if (!cur || (high % 10 > 5))
+                    res += high * digist;
+                if (cur === 1) res += high * digist + low + 1;
+                if (cur > 1) res += (high + 1) * digist;
+                low += cur * digist;
+                cur = high % 10;
+                high = parseInt(high / 10);
+                digist *= 10;
+            }
+            return res;
+        }
+        console.log(countDigitOne(50));
+    </script>
+</body>
+</html>
